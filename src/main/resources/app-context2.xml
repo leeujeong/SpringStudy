@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 1. setter injection -->
+	<bean id="engine1" class="com.koreait.ex01.bean02.Engine">
+		<property name="type" value="가솔린"/>
+		<property name="cc" value="50"/>
+		<property name="hp" value="100"/>
+		<property name="efficiency" value="5003.2"/>
+	</bean>
+	
+	<bean id="car1" class="com.koreait.ex01.bean02.Car">
+		<property name="model" value="toyota"/>
+		<property name="engine" ref="engine1"/>
+	</bean>
+	
+	<!-- 2. constructor injection -->
+	
+	<bean id="engine2" class="com.koreait.ex01.bean02.Engine">
+		<constructor-arg value="가솔린"/>
+		<constructor-arg value="50"/>
+		<constructor-arg value="100"/>
+		<constructor-arg value="5003.2"/>
+	</bean>
+	
+	<bean class="com.koreait.ex01.bean02.Car" id="car2">
+		<constructor-arg value="kia"/>
+		<constructor-arg ref="engine2"/>
+	</bean>
+	
+	<!-- 추가기능 활용하기 -->
+	<!-- 
+		Namespaces 탭에서 "p"옵션을 체크하면 <property>지정을 <bean>태그의 옵션으로 처리할 수 있다.
+	 -->
+	<bean class="com.koreait.ex01.bean02.Engine" 
+		  id="engine3"
+		  p:type="가솔린"
+		  p:cc="3000"
+		  p:hp="300"
+		  p:efficiency="1.5"/>
+		  
+	<bean class="com.koreait.ex01.bean02.Car"
+		  id="car3"
+		  p:model="레이"
+		  p:engine-ref="engine3"/> 
+	
+</beans>
