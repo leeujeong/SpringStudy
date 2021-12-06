@@ -1,0 +1,18 @@
+DBCP 를 이용한 간단 게시판
+
+1. pom.xml
+	1) <repositories> 태그 + <dependency> 태그 추가
+	2) version up
+	
+2. web.xml
+	1) Encoding : <filter> 태그 추가
+	2) <filter-mapping> 태그 추가
+	
+3.	context.xml 추가
+ 	1) src/main/resources/META-INF
+ 	2) <Resource> 태그 추가
+ 	3)web.xml태그 추가
+ 	<context-param>
+		<param-name>contextConfigLocation2</param-name>
+		<param-value>/META-INF/context.xml</param-value>
+	</context-param>
