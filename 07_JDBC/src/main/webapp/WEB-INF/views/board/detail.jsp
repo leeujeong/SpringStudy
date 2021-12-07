@@ -20,7 +20,7 @@
 	<form>
 		<input type="hidden" name="no" value="${board.no}">
 		<input type="hidden" name="title" value="${board.title}">
-		<input type="hidden" name="wirter" value="${board.writer}">
+		<input type="hidden" name="content" value="${board.content}">
 		<input type="button" value="수정" onclick="fnUpdateBoardForm(this.form)">
 		<input type="button" value="삭제" onclick="fnDeleteBoard(this.form)">
 		<input type="button" value="목록" onclick="fnSelectBoardList()">

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +18,7 @@ import com.koreait.ex07.command.BoardInsertCommand;
 import com.koreait.ex07.command.BoardListCommand;
 import com.koreait.ex07.command.BoardUpdateCommand;
 import com.koreait.ex07.command.BoardViewCommand;
+import com.koreait.ex07.dto.Board;
 
 @Controller
 @RequestMapping("board")
@@ -24,36 +26,33 @@ public class BoardController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);   //this는 현재 클래스
 
-//	
-//	private BoardListCommand BoardListCommand;
-//	private BoardInsertCommand BoardInsertCommand;
-//	private BoardViewCommand BoardViewCommand;
-//	private BoardUpdateCommand BoardUpdateCommand;
-//	private BoardDeleteCommand BoardDeleteCommand;
-//	
-//	public BoardController(BoardListCommand boardListCommand,
-//			BoardInsertCommand boardInsertCommand,
-//			BoardViewCommand boardViewCommand,
-//			BoardUpdateCommand boardUpdateCommand,
-//			BoardDeleteCommand boardDeleteCommand) {
-//		super();
-//		this.BoardListCommand = boardListCommand;
-//		this.BoardInsertCommand = boardInsertCommand;
-//		this.BoardViewCommand = boardViewCommand;
-//		this.BoardUpdateCommand = boardUpdateCommand;
-//		this.BoardDeleteCommand = boardDeleteCommand;
-//	}
-
-	@Autowired
+	
 	private BoardListCommand BoardListCommand;
-	@Autowired
 	private BoardInsertCommand BoardInsertCommand;
-	@Autowired
 	private BoardViewCommand BoardViewCommand;
-	@Autowired
 	private BoardUpdateCommand BoardUpdateCommand;
-	@Autowired
 	private BoardDeleteCommand BoardDeleteCommand;
+	
+	public BoardController(BoardListCommand boardListCommand,BoardInsertCommand boardInsertCommand,BoardViewCommand boardViewCommand,
+			BoardUpdateCommand boardUpdateCommand,BoardDeleteCommand boardDeleteCommand) {
+		super();
+		this.BoardListCommand = boardListCommand;
+		this.BoardInsertCommand = boardInsertCommand;
+		this.BoardViewCommand = boardViewCommand;
+		this.BoardUpdateCommand = boardUpdateCommand;
+		this.BoardDeleteCommand = boardDeleteCommand;
+	}
+
+//	@Autowired
+//	private BoardListCommand BoardListCommand;
+//	@Autowired
+//	private BoardInsertCommand BoardInsertCommand;
+//	@Autowired
+//	private BoardViewCommand BoardViewCommand;
+//	@Autowired
+//	private BoardUpdateCommand BoardUpdateCommand;
+//	@Autowired
+//	private BoardDeleteCommand BoardDeleteCommand;
 	
 	
 
@@ -86,11 +85,11 @@ public class BoardController {
 		return "board/detail";
 	}
 	@GetMapping(value="updateBoardForm.do")
-	public String updateBoardForm() {
+	public String updateBoardForm(@ModelAttribute("board")Board board) {
 		return "board/update";
 	}
 	
-	@GetMapping(value="updateBoard.do")
+	@PostMapping(value="updateBoard.do")
 	public void updateBoard(HttpServletRequest request, HttpServletResponse response, Model model) {
 		model.addAttribute("request", request);
 		model.addAttribute("response", response);

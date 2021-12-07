@@ -40,7 +40,7 @@ public class BoardUpdateCommand {
 			if(result > 0) {
 				out.println("<script>");
 				out.println("alert('수정 성공')");
-				out.println("location.href='/ex07/board/selectBoardList.do?no='" +no+"'");
+				out.println("location.href='/ex07/board/selectBoardByNo.do?no=" +no+"'");
 				out.println("</script>");
 				
 			}else {
