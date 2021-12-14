@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd" >
+
+<!-- 히카리가 커넥션 풀관리함 
+	매퍼 위치잡아주는것도 없어도됨- config package에서 잡아줘씀
+-->
+<configuration>
+
+	<settings>
+	  <setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="com.koreait.ex14.domain.Department" alias="Department"/>
+		<typeAlias type="com.koreait.ex14.domain.Employee" alias="Employee"/>
+	</typeAliases>
+</configuration>
