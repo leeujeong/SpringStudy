@@ -24,12 +24,12 @@ public class MailConfig {
 		JavaMailSenderImpl sender = new JavaMailSenderImpl();
 		sender.setHost("smtp.gmail.com");
 		sender.setPort(587);
-		sender.setUsername("구글 아이디");		
-		sender.setPassword("구글 비밀번호");
+		sender.setUsername("wjddb629@gmail.com");		
+		sender.setPassword("wjdtmdgh1!");
 		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", true);
-		properties.put("mail.smtp.starttls.enabel", true);
+		properties.put("mail.smtp.starttls.enable", true);
 		sender.setJavaMailProperties(properties);
 		
 		return sender;

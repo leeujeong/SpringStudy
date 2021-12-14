@@ -10,7 +10,7 @@ public class SecurityUtills {
 	//크로스사이트 스크립트(XXS)
 	//스크립트 코드입력을 무력화
 	
-	public String xxs(String str) {
+	public static String xxs(String str) {		//static 처리 해놓으면 new안해도된다용
 		str = str.replaceAll("<","&lt;");
 		str = str.replaceAll(">","&gt;");
 		str = str.replaceAll("&","&amp;");
@@ -42,7 +42,7 @@ public class SecurityUtills {
 	
 	//암호 : 1111->abcd
 	public static String encodeBase64(String str) {
-		return new String(Base64.decodeBase64(str.getBytes()));
+		return new String(Base64.encodeBase64(str.getBytes()));
 	}
 	
 	//복호 : abcd ->1111

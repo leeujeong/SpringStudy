@@ -1,48 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
+<!DOCTYPE mapper 
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.koreait.ex12.repository.MemberRepository">
+<mapper namespace="com.koreait.ex13.repository.MemberRepository">
 
-	<select id="selectMemberById" parameterType="String" resultType="int">
+	<select id="selectMemberById" parameterType="String" resultType="com.koreait.ex13.domain.Member">
 		SELECT NO, ID, PW, NAME, EMAIL, STATE, REGISTED
-		  FROM MEMBER
-		 WHERE ID=#{id}
+		  FROM MEMBERS
+		 WHERE ID = #{id}
 	</select>
+	
 	<insert id="joinMember" parameterType="com.koreait.ex13.domain.Member">
-		INSERT INTO MEMBER
-		VALUES(MEMBER_SEQ.NEXTVAL, #{id}, #{pw}, #{name},#{state}, #{email}, SYSDATE)
+		INSERT INTO MEMBERS
+		VALUES (MEMBER_SEQ.NEXTVAL, #{id}, #{pw}, #{name}, #{email}, 1, SYSDATE)
 	</insert>
 	
 	<select id="login" parameterType="com.koreait.ex13.domain.Member" resultType="com.koreait.ex13.domain.Member">
-		SELECT NO, ID, PW, NAME, EMAIL,STATE, REGISTED
-		  FROM MEMBER
-		 WHERE ID= #{id} AND PW = #{pw} AND STATE = 1
+		SELECT NO, ID, PW, NAME, EMAIL, STATE, REGISTED
+		  FROM MEMBERS
+		 WHERE ID = #{id} AND PW = #{pw} AND STATE = 1
 	</select>
 	
 	<select id="selectMemberByEmail" parameterType="String" resultType="com.koreait.ex13.domain.Member">
-		SELECT NO, ID, PW, NAME, EMAIL,STATE, REGISTED
-		  FROM MEMBER
+		SELECT NO, ID, PW, NAME, EMAIL, STATE, REGISTED
+		  FROM MEMBERS
 		 WHERE EMAIL = #{email}
 	</select>
 	
 	<update id="updatePw" parameterType="com.koreait.ex13.domain.Member">
-		UPDATE MEMBER
+		UPDATE MEMBERS
 		   SET PW = #{pw}
+		 WHERE EMAIL = #{email}
+	</update>
+	
+	<update id="updateMember" parameterType="com.koreait.ex13.domain.Member">
+		UPDATE MEMBERS
+		   SET NAME = #{name}
+		     , EMAIL = #{email}
 		 WHERE NO = #{no}
 	</update>
 	
-	<update id="updateMember" parameterType="com.koreait.ex13.domain.Member0">
-		UPDATE MEMBER
-		   SET NAME = #{name}, EMAIL = {email}
-		 WHERE NO=#{no}
-	</update>
 	<update id="leaveMember" parameterType="Long">
-		UPDATE MEMBER
-		   SET STATE =-1
-		 WHERE NO=#{no}
+		UPDATE MEMBERS
+		   SET STATE = -1
+		 WHERE NO = #{no}
 	</update>
-	
 	
 </mapper>
